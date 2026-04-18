@@ -135,46 +135,77 @@
     }
 
     /* ── DROPDOWN ── */
-    .nav-item { position: relative; }
-    .nav-item > a { display: flex; align-items: center; gap: 6px; }
-    .nav-item > a::after {
+    .nav-dropdown {
+      position: relative;
+    }
+    .nav-dropdown > a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-dropdown > a::after {
       content: '';
+      display: inline-block;
       width: 0; height: 0;
       border-left: 4px solid transparent;
       border-right: 4px solid transparent;
-      border-top: 5px solid rgba(200,220,255,0.35);
+      border-top: 5px solid rgba(200,220,255,0.4);
       transition: transform .2s, border-top-color .2s;
-      margin-top: 1px; flex-shrink: 0;
+      margin-top: 1px;
     }
-    .nav-item:hover > a { color: var(--cyan); border-bottom-color: var(--cyan); background: rgba(0,212,245,0.05); }
-    .nav-item:hover > a::after { border-top-color: var(--cyan); transform: rotate(180deg); }
-    .drop-menu {
+    .nav-dropdown:hover > a::after {
+      border-top-color: var(--cyan);
+      transform: rotate(180deg);
+    }
+    .nav-dropdown:hover > a {
+      color: var(--cyan);
+      border-bottom-color: var(--cyan);
+      background: rgba(0,212,245,0.05);
+    }
+    .dropdown-menu {
       display: none;
-      position: absolute; top: 100%; left: 50%;
-      transform: translateX(-50%);
-      min-width: 170px;
-      background: #160b28;
-      border: 1px solid rgba(0,212,245,0.22);
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 180px;
+      background: #1a0f30;
+      border: 1px solid rgba(0,212,245,0.2);
       border-top: 2px solid var(--cyan);
-      border-radius: 0 0 10px 10px;
-      z-index: 300;
-      box-shadow: 0 14px 36px rgba(0,0,0,0.55);
+      border-radius: 0 0 8px 8px;
+      overflow: hidden;
+      z-index: 200;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.5);
     }
-    .nav-item:hover .drop-menu { display: block; }
-    .drop-menu a {
-      display: flex; align-items: center; gap: 10px;
-      padding: 13px 20px;
-      color: rgba(200,220,255,0.6);
+    .nav-dropdown:hover .dropdown-menu {
+      display: block;
+    }
+    .dropdown-menu a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      color: rgba(200,220,255,0.65);
       font-family: 'Orbitron', monospace;
-      font-size: 10px; font-weight: 700; letter-spacing: 2px;
-      text-transform: uppercase; text-decoration: none;
-      border-bottom: 1px solid rgba(0,212,245,0.07);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,212,245,0.08);
       border-left: 3px solid transparent;
-      transition: all .18s; white-space: nowrap;
+      transition: all .2s;
+      white-space: nowrap;
     }
-    .drop-menu a:last-child { border-bottom: none; }
-    .drop-menu a:hover { color: var(--cyan); background: rgba(0,212,245,0.07); border-left-color: var(--cyan); }
-
+    .dropdown-menu a:last-child { border-bottom: none; }
+    .dropdown-menu a:hover {
+      color: var(--cyan);
+      background: rgba(0,212,245,0.07);
+      border-left-color: var(--cyan);
+    }
+    .dropdown-menu a svg {
+      width: 14px; height: 14px; flex-shrink: 0; opacity: 0.7;
+    }
+    .dropdown-menu a:hover svg { opacity: 1; }
 
     /* ── HERO ── */
     .hero {
@@ -438,17 +469,24 @@
   <a href="#inicio" class="active">Inicio</a>
   <a href="#institucion">Institución</a>
   <a href="#staff">Staff</a>
-  <div class="nav-item" id="eventos-menu">
+  <div class="nav-dropdown">
     <a href="#eventos">Eventos</a>
-    <div class="drop-menu" id="eventos-drop">
-      <div id="sucrebot2026-item" style="display:flex;align-items:center;gap:10px;padding:13px 20px;color:rgba(200,220,255,0.6);font-family:'Orbitron',monospace;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-bottom:1px solid rgba(0,212,245,0.07);border-left:3px solid transparent;transition:all .18s;white-space:nowrap;">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-        SucreBot 2026
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:auto"><path d="M9 18l6-6-6-6"/></svg>
-      </div>
+    <div class="dropdown-menu">
+      <a href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        Registro SucreBot 2026
+      </a>
     </div>
   </div>
-  <a href="https://sucrebotclub-institute.github.io/INICIO/#participantes">Participantes</a>
+  <div class="nav-dropdown">
+    <a href="#participantes">Participantes</a>
+    <div class="dropdown-menu">
+      <a href="#participantes">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Participantes
+      </a>
+    </div>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -557,7 +595,7 @@
     <a href="#institucion">Institución</a>
     <a href="#staff" id="staff">Staff</a>
     <a href="#eventos" id="eventos">Eventos</a>
-    <a href="https://sucrebotclub-institute.github.io/INICIO/#participantes" id="participantes">Participantes</a>
+    <a href="#participantes" id="participantes">Participantes</a>
   </div>
   <div class="footer-copy">© 2026 SucreBot · UPS</div>
 </footer>
@@ -578,53 +616,6 @@
       a.classList.add('active');
     });
   });
-  // Nav active state
-  document.querySelectorAll('nav a').forEach(a => {
-    a.addEventListener('click', () => {
-      document.querySelectorAll('nav a').forEach(x => x.classList.remove('active'));
-      a.classList.add('active');
-    });
-  });
-
-  // ── Registro submenu ──
-  (function(){
-    var btn = document.getElementById('sucrebot2026-item');
-    var sub = document.getElementById('reg-submenu');
-    if(!btn || !sub) return;
-    var t;
-    function show(){
-      clearTimeout(t);
-      var r = btn.getBoundingClientRect();
-      sub.style.top  = r.top + 'px';
-      sub.style.left = (r.right + 6) + 'px';
-      sub.style.display = 'block';
-      btn.style.color = '#00d4f5';
-      btn.style.borderLeftColor = '#00d4f5';
-      btn.style.background = 'rgba(0,212,245,0.07)';
-    }
-    function hide(){
-      t = setTimeout(function(){
-        sub.style.display = 'none';
-        btn.style.color = '';
-        btn.style.borderLeftColor = '';
-        btn.style.background = '';
-      }, 200);
-    }
-    btn.addEventListener('mouseenter', show);
-    btn.addEventListener('mouseleave', hide);
-    sub.addEventListener('mouseenter', function(){ clearTimeout(t); });
-    sub.addEventListener('mouseleave', hide);
-  })();
 </script>
-
-<!-- SUBMENU FLOTANTE REGISTRO -->
-<div id="reg-submenu" style="display:none;position:fixed;z-index:99999;background:#160b28;border:1px solid rgba(0,212,245,0.3);border-top:2px solid #00d4f5;border-radius:4px 10px 10px 10px;box-shadow:6px 6px 24px rgba(0,0,0,0.7);min-width:150px;">
-  <a href="https://sucrebotclub-institute.github.io/REGISTRO/" style="display:flex;align-items:center;gap:10px;padding:13px 20px;color:rgba(200,220,255,0.65);font-family:'Orbitron',monospace;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-left:3px solid transparent;white-space:nowrap;"
-     onmouseover="this.style.color='#00d4f5';this.style.borderLeftColor='#00d4f5';this.style.background='rgba(0,212,245,0.08)'"
-     onmouseout="this.style.color='rgba(200,220,255,0.65)';this.style.borderLeftColor='transparent';this.style.background=''">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-    Registro
-  </a>
-</div>
 </body>
 </html>
