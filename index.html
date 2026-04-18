@@ -176,7 +176,6 @@
     .drop-menu a:last-child { border-bottom: none; }
     .drop-menu a:hover { color: var(--cyan); background: rgba(0,212,245,0.07); border-left-color: var(--cyan); }
 
-    /* ── NESTED SUBMENU ── */
     .drop-item { position: relative; }
     .drop-item > a {
       display: flex; align-items: center; justify-content: space-between;
@@ -190,31 +189,20 @@
       transition: border-left-color .2s;
       margin-left: 8px; flex-shrink: 0;
     }
-    .drop-item:hover > a { color: var(--cyan); background: rgba(0,212,245,0.07); border-left-color: var(--cyan); }
-    .drop-item:hover > a::after { border-left-color: var(--cyan); }
+    .drop-item.open > a { color: var(--cyan); background: rgba(0,212,245,0.07); border-left-color: var(--cyan); }
+    .drop-item.open > a::after { border-left-color: var(--cyan); }
     .sub-menu {
       display: none;
-      position: absolute; top: -2px; left: calc(100% + 0px);
+      position: absolute; top: -2px; left: 100%;
       min-width: 160px;
       background: #160b28;
       border: 1px solid rgba(0,212,245,0.22);
       border-top: 2px solid var(--cyan);
       border-radius: 0 10px 10px 10px;
-      overflow: hidden;
       z-index: 400;
       box-shadow: 8px 8px 28px rgba(0,0,0,0.5);
     }
-    /* puente invisible para no perder el hover al cruzar */
-    .drop-item::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 100%;
-      width: 8px; height: 100%;
-      background: transparent;
-      display: none;
-    }
-    .drop-item:hover::after { display: block; }
-    .drop-item:hover .sub-menu { display: block; }
+    .drop-item.open .sub-menu { display: block; }
     .sub-menu a {
       display: flex; align-items: center; gap: 10px;
       padding: 13px 20px;
@@ -637,6 +625,19 @@
       document.querySelectorAll('nav a').forEach(x => x.classList.remove('active'));
       a.classList.add('active');
     });
+  });
+  // ── Submenú anidado con JS (hover robusto) ──
+  document.querySelectorAll('.drop-item').forEach(item => {
+    let timer;
+    const open  = () => { clearTimeout(timer); item.classList.add('open'); };
+    const close = () => { timer = setTimeout(() => item.classList.remove('open'), 120); };
+    item.addEventListener('mouseenter', open);
+    item.addEventListener('mouseleave', close);
+    const sub = item.querySelector('.sub-menu');
+    if (sub) {
+      sub.addEventListener('mouseenter', open);
+      sub.addEventListener('mouseleave', close);
+    }
   });
 </script>
 </body>
