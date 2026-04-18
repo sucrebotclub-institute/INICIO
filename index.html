@@ -134,6 +134,91 @@
       background: rgba(0,212,245,0.05);
     }
 
+    /* ── DROPDOWN ── */
+    .nav-item { position: relative; }
+    .nav-item > a { display: flex; align-items: center; gap: 6px; }
+    .nav-item > a::after {
+      content: '';
+      width: 0; height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid rgba(200,220,255,0.35);
+      transition: transform .2s, border-top-color .2s;
+      margin-top: 1px; flex-shrink: 0;
+    }
+    .nav-item:hover > a { color: var(--cyan); border-bottom-color: var(--cyan); background: rgba(0,212,245,0.05); }
+    .nav-item:hover > a::after { border-top-color: var(--cyan); transform: rotate(180deg); }
+    .drop-menu {
+      display: none;
+      position: absolute; top: 100%; left: 50%;
+      transform: translateX(-50%);
+      min-width: 170px;
+      background: #160b28;
+      border: 1px solid rgba(0,212,245,0.22);
+      border-top: 2px solid var(--cyan);
+      border-radius: 0 0 10px 10px;
+      overflow: hidden;
+      z-index: 300;
+      box-shadow: 0 14px 36px rgba(0,0,0,0.55);
+    }
+    .nav-item:hover .drop-menu { display: block; }
+    .drop-menu a {
+      display: flex; align-items: center; gap: 10px;
+      padding: 13px 20px;
+      color: rgba(200,220,255,0.6);
+      font-family: 'Orbitron', monospace;
+      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; text-decoration: none;
+      border-bottom: 1px solid rgba(0,212,245,0.07);
+      border-left: 3px solid transparent;
+      transition: all .18s; white-space: nowrap;
+    }
+    .drop-menu a:last-child { border-bottom: none; }
+    .drop-menu a:hover { color: var(--cyan); background: rgba(0,212,245,0.07); border-left-color: var(--cyan); }
+
+    /* ── NESTED SUBMENU ── */
+    .drop-item { position: relative; }
+    .drop-item > a {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .drop-item > a::after {
+      content: '';
+      width: 0; height: 0;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-left: 5px solid rgba(200,220,255,0.35);
+      transition: border-left-color .2s;
+      margin-left: 8px; flex-shrink: 0;
+    }
+    .drop-item:hover > a { color: var(--cyan); background: rgba(0,212,245,0.07); border-left-color: var(--cyan); }
+    .drop-item:hover > a::after { border-left-color: var(--cyan); }
+    .sub-menu {
+      display: none;
+      position: absolute; top: 0; left: 100%;
+      min-width: 160px;
+      background: #160b28;
+      border: 1px solid rgba(0,212,245,0.22);
+      border-top: 2px solid var(--cyan);
+      border-radius: 0 10px 10px 0;
+      overflow: hidden;
+      z-index: 400;
+      box-shadow: 8px 8px 28px rgba(0,0,0,0.5);
+    }
+    .drop-item:hover .sub-menu { display: block; }
+    .sub-menu a {
+      display: flex; align-items: center; gap: 10px;
+      padding: 13px 20px;
+      color: rgba(200,220,255,0.6);
+      font-family: 'Orbitron', monospace;
+      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; text-decoration: none;
+      border-bottom: 1px solid rgba(0,212,245,0.07);
+      border-left: 3px solid transparent;
+      transition: all .18s; white-space: nowrap;
+    }
+    .sub-menu a:last-child { border-bottom: none; }
+    .sub-menu a:hover { color: var(--cyan); background: rgba(0,212,245,0.07); border-left-color: var(--cyan); }
+
     /* ── HERO ── */
     .hero {
       position: relative;
@@ -396,9 +481,24 @@
   <a href="#inicio" class="active">Inicio</a>
   <a href="#institucion">Institución</a>
   <a href="#staff">Staff</a>
-  <a href="#eventos">Eventos</a>
+  <div class="nav-item">
+    <a href="#eventos">Eventos</a>
+    <div class="drop-menu">
+      <div class="drop-item">
+        <a href="#eventos">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          SucreBot 2026
+        </a>
+        <div class="sub-menu">
+          <a href="https://sucrebotclub-institute.github.io/REGISTRO/">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            Registro
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
   <a href="https://sucrebotclub-institute.github.io/INICIO/#participantes">Participantes</a>
-  <a href="https://sucrebotclub-institute.github.io/REGISTRO/">Registro</a>
 </nav>
 
 <!-- HERO -->
