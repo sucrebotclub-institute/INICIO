@@ -157,7 +157,6 @@
       border: 1px solid rgba(0,212,245,0.22);
       border-top: 2px solid var(--cyan);
       border-radius: 0 0 10px 10px;
-      overflow: hidden;
       z-index: 300;
       box-shadow: 0 14px 36px rgba(0,0,0,0.55);
     }
@@ -193,16 +192,18 @@
     .drop-item.open > a::after { border-left-color: var(--cyan); }
     .sub-menu {
       display: none;
-      position: absolute; top: -2px; left: 100%;
+      position: absolute;
+      top: 0;
+      left: 100%;
       min-width: 160px;
       background: #160b28;
       border: 1px solid rgba(0,212,245,0.22);
       border-top: 2px solid var(--cyan);
       border-radius: 0 10px 10px 10px;
-      z-index: 400;
-      box-shadow: 8px 8px 28px rgba(0,0,0,0.5);
+      z-index: 500;
+      box-shadow: 8px 8px 28px rgba(0,0,0,0.6);
     }
-    .drop-item.open .sub-menu { display: block; }
+    .sub-menu.open { display: block; }
     .sub-menu a {
       display: flex; align-items: center; gap: 10px;
       padding: 13px 20px;
@@ -479,20 +480,15 @@
   <a href="#inicio" class="active">Inicio</a>
   <a href="#institucion">Institución</a>
   <a href="#staff">Staff</a>
-  <div class="nav-item">
+  <div class="nav-item" id="eventos-menu">
     <a href="#eventos">Eventos</a>
-    <div class="drop-menu">
-      <div class="drop-item">
+    <div class="drop-menu" id="eventos-drop">
+      <div class="drop-item" id="sucrebot2026-item">
         <a href="#eventos">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
           SucreBot 2026
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:auto"><path d="M9 18l6-6-6-6"/></svg>
         </a>
-        <div class="sub-menu">
-          <a href="https://sucrebotclub-institute.github.io/REGISTRO/">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-            Registro
-          </a>
-        </div>
       </div>
     </div>
   </div>
@@ -626,19 +622,65 @@
       a.classList.add('active');
     });
   });
-  // ── Submenú anidado con JS (hover robusto) ──
-  document.querySelectorAll('.drop-item').forEach(item => {
-    let timer;
-    const open  = () => { clearTimeout(timer); item.classList.add('open'); };
-    const close = () => { timer = setTimeout(() => item.classList.remove('open'), 120); };
-    item.addEventListener('mouseenter', open);
-    item.addEventListener('mouseleave', close);
-    const sub = item.querySelector('.sub-menu');
-    if (sub) {
-      sub.addEventListener('mouseenter', open);
-      sub.addEventListener('mouseleave', close);
-    }
+  // Nav active state
+  document.querySelectorAll('nav a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.querySelectorAll('nav a').forEach(x => x.classList.remove('active'));
+      a.classList.add('active');
+    });
   });
+
+  // ── Submenú flotante con posición fixed ──
+  (function() {
+    const item = document.getElementById('sucrebot2026-item');
+    const sub  = document.getElementById('sucrebot2026-sub');
+    if (!item || !sub) return;
+    let timer;
+
+    function mostrar() {
+      clearTimeout(timer);
+      const r = item.getBoundingClientRect();
+      sub.style.top  = r.top + 'px';
+      sub.style.left = (r.right + 4) + 'px';
+      sub.style.display = 'block';
+    }
+    function ocultar() {
+      timer = setTimeout(() => { sub.style.display = 'none'; }, 180);
+    }
+
+    item.addEventListener('mouseenter', mostrar);
+    item.addEventListener('mouseleave', ocultar);
+    sub.addEventListener('mouseenter', () => clearTimeout(timer));
+    sub.addEventListener('mouseleave', ocultar);
+  })();
 </script>
+
+<!-- Sub-menu flotante (fuera de cualquier overflow:hidden) -->
+<div id="sucrebot2026-sub" style="
+  display:none;
+  position:fixed;
+  min-width:160px;
+  background:#160b28;
+  border:1px solid rgba(0,212,245,0.22);
+  border-top:2px solid #00d4f5;
+  border-radius:0 10px 10px 10px;
+  z-index:9999;
+  box-shadow:8px 8px 28px rgba(0,0,0,0.6);
+">
+  <a href="https://sucrebotclub-institute.github.io/REGISTRO/" style="
+    display:flex;align-items:center;gap:10px;
+    padding:13px 20px;
+    color:rgba(200,220,255,0.6);
+    font-family:'Orbitron',monospace;
+    font-size:10px;font-weight:700;letter-spacing:2px;
+    text-transform:uppercase;text-decoration:none;
+    border-left:3px solid transparent;
+    transition:all .18s;white-space:nowrap;
+  " onmouseover="this.style.color='#00d4f5';this.style.background='rgba(0,212,245,0.07)';this.style.borderLeftColor='#00d4f5'"
+     onmouseout="this.style.color='rgba(200,220,255,0.6)';this.style.background='';this.style.borderLeftColor='transparent'">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+    Registro
+  </a>
+</div>
 </body>
 </html>
