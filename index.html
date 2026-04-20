@@ -30,11 +30,21 @@
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
+      padding-top: 174px;
+    }
+
+    /* ── STICKY WRAPPER ── */
+    .sticky-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
     }
 
     /* ── TOP BAR ── */
     .top-bar {
-      background: rgba(0,212,245,0.04);
+      background: rgba(13,13,26,0.97);
       border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: flex-end;
@@ -66,15 +76,12 @@
 
     /* ── HEADER ── */
     header {
-      background: var(--bg2);
+      background: rgba(18,18,31,0.97);
       border-bottom: 2px solid rgba(0,212,245,0.2);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 14px 40px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
       backdrop-filter: blur(12px);
     }
     .logo-wrap { display: flex; align-items: center; gap: 16px; }
@@ -108,10 +115,11 @@
 
     /* ── NAV ── */
     nav {
-      background: var(--purple-dark);
+      background: rgba(45,15,69,0.97);
       border-bottom: 1px solid rgba(0,212,245,0.12);
       display: flex;
       justify-content: center;
+      backdrop-filter: blur(12px);
     }
     nav a {
       color: rgba(200,220,255,0.55);
@@ -429,6 +437,9 @@
 </head>
 <body>
 
+<!-- STICKY HEADER WRAPPER -->
+<div class="sticky-header">
+
 <!-- TOP BAR -->
 <div class="top-bar">
   <div class="top-pulse"></div>
@@ -484,6 +495,8 @@
     </div>
   </div>
 </nav>
+
+</div><!-- /sticky-header -->
 
 <!-- HERO -->
 <section class="hero" id="inicio">
