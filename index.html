@@ -645,7 +645,10 @@
   // ── DECODIFICAR JWT DE GOOGLE ──
   function parseJwt(token) {
     const base64 = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
-    return JSON.parse(atob(base64));
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(c =>
+      '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+    ).join(''));
+    return JSON.parse(jsonPayload);
   }
 
   // ── CALLBACK CUANDO GOOGLE RESPONDE ──
@@ -668,7 +671,7 @@
     // Mostrar info del usuario
     document.getElementById('btnLogin').style.display = 'none';
     document.getElementById('userInfo').classList.add('visible');
-    document.getElementById('userName').textContent = data.name || data.email;
+    document.getElementById('userName').textContent = decodeURIComponent(escape(data.name || data.email));
     if (data.picture) document.getElementById('userAvatar').src = data.picture;
 
     // Mostrar Staff en el nav
