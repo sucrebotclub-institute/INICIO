@@ -256,20 +256,12 @@
       overflow: hidden;
       z-index: 300;
       box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-      margin-left: 0;
     }
-    .nav-dropdown-nested:hover .dropdown-menu-nested { display: block; }
+    .dropdown-menu-nested.open { display: block; }
     .nav-dropdown-nested > a:hover {
       color: var(--sucre-blue);
       background: #f4f8ff;
       border-left-color: var(--sucre-blue);
-    }
-    /* Bridge to prevent gap between menu items */
-    .dropdown-menu-nested::before {
-      content: '';
-      position: absolute;
-      top: 0; left: -8px;
-      width: 8px; height: 100%;
     }
 
     /* ── STAFF NAV ITEM (oculto por defecto) ── */
@@ -728,6 +720,23 @@
   window.addEventListener('load', () => {
     const saved = sessionStorage.getItem('sucrebot_user');
     if (saved) activarSesion(JSON.parse(saved));
+  });
+
+  // ── NESTED DROPDOWN ──
+  document.querySelectorAll('.nav-dropdown-nested').forEach(nested => {
+    const submenu = nested.querySelector('.dropdown-menu-nested');
+    let timer;
+    nested.addEventListener('mouseenter', () => {
+      clearTimeout(timer);
+      submenu.classList.add('open');
+    });
+    nested.addEventListener('mouseleave', () => {
+      timer = setTimeout(() => submenu.classList.remove('open'), 150);
+    });
+    submenu.addEventListener('mouseenter', () => clearTimeout(timer));
+    submenu.addEventListener('mouseleave', () => {
+      timer = setTimeout(() => submenu.classList.remove('open'), 150);
+    });
   });
 
   // ── NAV ACTIVE STATE ──
