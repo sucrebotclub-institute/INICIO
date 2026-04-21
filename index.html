@@ -212,30 +212,30 @@
       position: absolute;
       top: 100%; left: 0;
       min-width: 200px;
-      background: #ffffff;
-      border: 1px solid #d0d4da;
+      background: #1e2030;
+      border: 1px solid #2a2d3e;
       border-top: 3px solid var(--sucre-blue);
       border-radius: 0 0 8px 8px;
       overflow: visible;
       z-index: 200;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
     }
     .nav-dropdown:hover .dropdown-menu { display: block; }
     .dropdown-menu a {
       display: flex; align-items: center; gap: 10px;
       padding: 12px 20px;
-      color: #444;
+      color: #c0c8d8;
       font-family: 'Exo 2', sans-serif;
       font-size: 14px; font-weight: 500; letter-spacing: 0.3px;
       text-transform: none; text-decoration: none;
-      border-bottom: 1px solid #f0f0f0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
       border-left: 3px solid transparent;
       transition: all .2s; white-space: nowrap;
     }
     .dropdown-menu a:last-child { border-bottom: none; }
     .dropdown-menu a:hover {
-      color: var(--sucre-blue);
-      background: #f4f8ff;
+      color: #ffffff;
+      background: rgba(255,255,255,0.07);
       border-left-color: var(--sucre-blue);
     }
     .dropdown-menu a svg { width: 14px; height: 14px; flex-shrink: 0; opacity: 0.6; }
@@ -262,11 +262,11 @@
       position: absolute;
       top: -3px; left: 100%;
       min-width: 180px;
-      background: #ffffff;
-      border: 1px solid #d0d4da;
+      background: #1e2030;
+      border: 1px solid #2a2d3e;
       border-top: 3px solid var(--sucre-blue);
       border-radius: 0 8px 8px 8px;
-      box-shadow: 4px 8px 24px rgba(0,0,0,0.12);
+      box-shadow: 4px 8px 24px rgba(0,0,0,0.3);
       z-index: 300;
     }
     .registro-sub.open { display: block; }
@@ -527,7 +527,7 @@
     <a href="#eventos">Eventos</a>
     <div class="dropdown-menu" id="menuEventos">
       <div id="wrapSucrebot" style="position:relative;">
-        <a id="btnSucrebot" href="javascript:void(0)" style="color:#333; justify-content:space-between;">
+        <a id="btnSucrebot" href="javascript:void(0)" style="color:#c0c8d8; justify-content:space-between;">
           <span style="display:flex;align-items:center;gap:10px;">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
             SucreBot 2026
