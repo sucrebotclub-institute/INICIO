@@ -221,6 +221,7 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
     .nav-dropdown:hover .dropdown-menu { display: block; }
+    #navEventos:hover #menuEventos { display: none; } /* controlado por JS */
     .dropdown-menu a {
       display: flex; align-items: center; gap: 10px;
       padding: 12px 20px;
@@ -511,16 +512,16 @@
   <a href="#inicio" class="active">Inicio</a>
   <a href="#institucion">Institución</a>
 
-  <div class="nav-dropdown">
+  <div class="nav-dropdown" id="navEventos">
     <a href="#eventos">Eventos</a>
-    <div class="dropdown-menu">
-      <div class="nav-dropdown-nested">
+    <div class="dropdown-menu" id="menuEventos">
+      <div class="nav-dropdown-nested" id="nestedSucrebot">
         <a href="#eventos">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
           SucreBot 2026
           <svg class="arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:auto;width:12px;height:12px;"><path d="M9 18l6-6-6-6"/></svg>
         </a>
-        <div class="dropdown-menu-nested">
+        <div class="dropdown-menu-nested" id="menuRegistro">
           <a href="https://sucrebotclub-institute.github.io/REGISTRO/">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
             Registro
@@ -722,21 +723,43 @@
     if (saved) activarSesion(JSON.parse(saved));
   });
 
-  // ── NESTED DROPDOWN ──
-  document.querySelectorAll('.nav-dropdown-nested').forEach(nested => {
-    const submenu = nested.querySelector('.dropdown-menu-nested');
-    let timer;
-    nested.addEventListener('mouseenter', () => {
-      clearTimeout(timer);
-      submenu.classList.add('open');
-    });
-    nested.addEventListener('mouseleave', () => {
-      timer = setTimeout(() => submenu.classList.remove('open'), 150);
-    });
-    submenu.addEventListener('mouseenter', () => clearTimeout(timer));
-    submenu.addEventListener('mouseleave', () => {
-      timer = setTimeout(() => submenu.classList.remove('open'), 150);
-    });
+  // ── EVENTOS DROPDOWN COMPLETO ──
+  const navEventos = document.getElementById('navEventos');
+  const menuEventos = document.getElementById('menuEventos');
+  const nestedSucrebot = document.getElementById('nestedSucrebot');
+  const menuRegistro = document.getElementById('menuRegistro');
+
+  // Quitar el hover CSS del nav-dropdown para Eventos y manejarlo con JS
+  let timerEventos, timerRegistro;
+
+  navEventos.addEventListener('mouseenter', () => {
+    clearTimeout(timerEventos);
+    menuEventos.style.display = 'block';
+  });
+  navEventos.addEventListener('mouseleave', () => {
+    timerEventos = setTimeout(() => {
+      menuEventos.style.display = 'none';
+      menuRegistro.classList.remove('open');
+    }, 150);
+  });
+  menuEventos.addEventListener('mouseenter', () => clearTimeout(timerEventos));
+  menuEventos.addEventListener('mouseleave', () => {
+    timerEventos = setTimeout(() => {
+      menuEventos.style.display = 'none';
+      menuRegistro.classList.remove('open');
+    }, 150);
+  });
+
+  nestedSucrebot.addEventListener('mouseenter', () => {
+    clearTimeout(timerRegistro);
+    menuRegistro.classList.add('open');
+  });
+  nestedSucrebot.addEventListener('mouseleave', () => {
+    timerRegistro = setTimeout(() => menuRegistro.classList.remove('open'), 150);
+  });
+  menuRegistro.addEventListener('mouseenter', () => clearTimeout(timerRegistro));
+  menuRegistro.addEventListener('mouseleave', () => {
+    timerRegistro = setTimeout(() => menuRegistro.classList.remove('open'), 150);
   });
 
   // ── NAV ACTIVE STATE ──
