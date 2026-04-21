@@ -372,6 +372,61 @@
     .footer-links a { color: var(--muted); text-decoration: none; font-size: 12px; letter-spacing: 1px; transition: color .2s; }
     .footer-links a:hover { color: var(--cyan); }
     .footer-copy { font-size: 11px; color: rgba(122,138,170,0.5); letter-spacing: 0.5px; }
+
+    /* ── RESPONSIVE MÓVIL ── */
+    @media (max-width: 768px) {
+      body { padding-top: 130px; }
+
+      /* Top bar */
+      .top-bar {
+        padding: 6px 16px;
+        gap: 10px;
+        font-size: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .top-bar a span, .top-bar a { font-size: 10px; }
+      .top-pulse { display: none; }
+
+      /* Header */
+      header { padding: 10px 16px; }
+      .logo-text .name { font-size: 20px; letter-spacing: 2px; }
+      .logo-text .sub { font-size: 8px; letter-spacing: 2px; }
+      .logo-circle { width: 46px; height: 46px; }
+      .logo-circle img { width: 46px; height: 46px; }
+      header img[alt="Instituto Superior Universitario Sucre"] { height: 38px; max-width: 140px; }
+
+      /* Nav */
+      nav { overflow-x: auto; justify-content: flex-start; }
+      nav a { padding: 12px 16px; font-size: 9px; letter-spacing: 1px; white-space: nowrap; }
+
+      /* Hero */
+      .hero { padding: 36px 20px; min-height: auto; }
+      .hero-content { max-width: 100%; }
+      .hero-title { font-size: 32px; }
+      .hero-sub { font-size: 13px; }
+      .hero-right { display: none; }
+      .btn-primary, .btn-ghost { padding: 12px 20px; font-size: 9px; display: block; width: 100%; margin: 0 0 10px 0; text-align: center; }
+      .btn-ghost { margin-left: 0; }
+
+      /* Stats */
+      .stats { flex-wrap: wrap; }
+      .stat { min-width: 50%; border-right: none; border-bottom: 1px solid var(--border); }
+      .stat:nth-child(odd) { border-right: 1px solid var(--border); }
+      .stat-num { font-size: 24px; }
+
+      /* Cards */
+      .cards { padding: 0 16px 36px; gap: 12px; }
+      .card { min-width: 140px; }
+
+      /* About strip */
+      .about-strip { flex-direction: column; padding: 36px 20px; gap: 24px; text-align: center; }
+      .ab-text p { font-size: 13px; }
+
+      /* Footer */
+      footer { flex-direction: column; gap: 16px; padding: 24px 20px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; gap: 12px; }
+    }
   </style>
 </head>
 <body>
