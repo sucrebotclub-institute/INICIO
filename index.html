@@ -247,7 +247,7 @@
     .dropdown-menu-nested {
       display: none;
       position: absolute;
-      top: 0; left: 100%;
+      top: -3px; left: 100%;
       min-width: 180px;
       background: #ffffff;
       border: 1px solid #d0d4da;
@@ -256,12 +256,20 @@
       overflow: hidden;
       z-index: 300;
       box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      margin-left: 0;
     }
     .nav-dropdown-nested:hover .dropdown-menu-nested { display: block; }
     .nav-dropdown-nested > a:hover {
       color: var(--sucre-blue);
       background: #f4f8ff;
       border-left-color: var(--sucre-blue);
+    }
+    /* Bridge to prevent gap between menu items */
+    .dropdown-menu-nested::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -8px;
+      width: 8px; height: 100%;
     }
 
     /* ── STAFF NAV ITEM (oculto por defecto) ── */
