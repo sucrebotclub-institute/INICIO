@@ -216,7 +216,7 @@
       border: 1px solid #d0d4da;
       border-top: 3px solid var(--sucre-blue);
       border-radius: 0 0 8px 8px;
-      overflow: hidden;
+      overflow: visible;
       z-index: 200;
       box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
@@ -740,10 +740,24 @@
     e.stopPropagation();
     const menu = document.getElementById('menuRegistro');
     const arrow = document.getElementById('arrowRegistro');
+    const menuEventos = document.getElementById('menuEventos');
     const open = menu.classList.contains('open');
     menu.classList.toggle('open');
     arrow.style.transform = open ? '' : 'rotate(90deg)';
+    // Mantener el dropdown padre visible
+    menuEventos.style.display = 'block';
   }
+
+  // Cerrar registro si se cierra eventos
+  document.getElementById('navEventos').addEventListener('mouseleave', () => {
+    setTimeout(() => {
+      const menuEventos = document.getElementById('menuEventos');
+      if (menuEventos.style.display !== 'block') {
+        document.getElementById('menuRegistro').classList.remove('open');
+        document.getElementById('arrowRegistro').style.transform = '';
+      }
+    }, 300);
+  });
 
   // ── NAV ACTIVE STATE ──
   document.querySelectorAll('nav a').forEach(a => {
