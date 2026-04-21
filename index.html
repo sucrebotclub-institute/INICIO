@@ -160,14 +160,14 @@
 
     /* ── NAV ── */
     nav {
-      background: rgba(15,17,22,0.98);
-      border-bottom: 3px solid var(--sucre-blue);
+      background: var(--sucre-blue);
+      border-bottom: none;
       display: flex;
       justify-content: center;
       backdrop-filter: blur(12px);
     }
     nav a {
-      color: rgba(200,225,255,0.55);
+      color: rgba(255,255,255,0.75);
       text-decoration: none;
       padding: 15px 34px;
       font-family: 'Orbitron', monospace;
@@ -178,9 +178,9 @@
       cursor: pointer;
     }
     nav a:hover, nav a.active {
-      color: var(--cyan);
-      border-bottom-color: var(--cyan);
-      background: rgba(74,184,232,0.07);
+      color: #ffffff;
+      border-bottom-color: #ffffff;
+      background: rgba(0,0,0,0.15);
     }
 
     /* ── DROPDOWN ── */
@@ -192,18 +192,18 @@
       width: 0; height: 0;
       border-left: 4px solid transparent;
       border-right: 4px solid transparent;
-      border-top: 5px solid rgba(200,220,255,0.4);
+      border-top: 5px solid rgba(255,255,255,0.6);
       transition: transform .2s, border-top-color .2s;
       margin-top: 1px;
     }
     .nav-dropdown:hover > a::after {
-      border-top-color: var(--cyan);
+      border-top-color: #ffffff;
       transform: rotate(180deg);
     }
     .nav-dropdown:hover > a {
-      color: var(--cyan);
-      border-bottom-color: var(--cyan);
-      background: rgba(74,184,232,0.07);
+      color: #ffffff;
+      border-bottom-color: #ffffff;
+      background: rgba(0,0,0,0.15);
     }
     .dropdown-menu {
       display: none;
