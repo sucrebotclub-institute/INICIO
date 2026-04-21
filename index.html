@@ -375,39 +375,48 @@
 
     /* ── RESPONSIVE MÓVIL ── */
     @media (max-width: 768px) {
-      body { padding-top: 130px; }
+      body { padding-top: 120px; }
 
-      /* Top bar */
+      /* Top bar: todo en una sola línea */
       .top-bar {
-        padding: 6px 16px;
-        gap: 10px;
-        font-size: 10px;
-        flex-wrap: wrap;
-        justify-content: center;
+        padding: 6px 12px;
+        gap: 8px;
+        font-size: 9px;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        overflow-x: auto;
       }
-      .top-bar a span, .top-bar a { font-size: 10px; }
+      .top-bar a { font-size: 9px; gap: 4px; white-space: nowrap; }
+      .top-bar a svg { width: 11px; height: 11px; }
       .top-pulse { display: none; }
+      .btn-login { font-size: 9px; padding: 3px 10px; white-space: nowrap; }
+      .btn-login svg { width: 11px; height: 11px; }
 
-      /* Header */
-      header { padding: 10px 16px; }
-      .logo-text .name { font-size: 20px; letter-spacing: 2px; }
-      .logo-text .sub { font-size: 8px; letter-spacing: 2px; }
-      .logo-circle { width: 46px; height: 46px; }
-      .logo-circle img { width: 46px; height: 46px; }
-      header img[alt="Instituto Superior Universitario Sucre"] { height: 38px; max-width: 140px; }
+      /* Header: logo sucre más pequeño */
+      header { padding: 8px 12px; }
+      .logo-wrap { gap: 10px; }
+      .logo-circle { width: 42px; height: 42px; }
+      .logo-circle img { width: 42px; height: 42px; }
+      .logo-text .name { font-size: 18px; letter-spacing: 2px; }
+      .logo-text .sub { font-size: 7px; letter-spacing: 1.5px; }
+      header img[alt="Instituto Superior Universitario Sucre"] {
+        height: 32px;
+        max-width: 110px;
+      }
 
       /* Nav */
       nav { overflow-x: auto; justify-content: flex-start; }
-      nav a { padding: 12px 16px; font-size: 9px; letter-spacing: 1px; white-space: nowrap; }
+      nav a { padding: 11px 14px; font-size: 9px; letter-spacing: 1px; white-space: nowrap; }
 
       /* Hero */
-      .hero { padding: 36px 20px; min-height: auto; }
+      .hero { padding: 28px 20px 36px; min-height: auto; }
       .hero-content { max-width: 100%; }
-      .hero-title { font-size: 32px; }
-      .hero-sub { font-size: 13px; }
+      .hero-tag { font-size: 8px; padding: 5px 12px; margin-bottom: 16px; }
+      .hero-title { font-size: 34px; }
+      .hero-sub { font-size: 13px; margin-bottom: 24px; }
       .hero-right { display: none; }
-      .btn-primary, .btn-ghost { padding: 12px 20px; font-size: 9px; display: block; width: 100%; margin: 0 0 10px 0; text-align: center; }
-      .btn-ghost { margin-left: 0; }
+      .btn-primary { padding: 12px 20px; font-size: 9px; display: block; width: 100%; margin: 0 0 10px 0; text-align: center; }
+      .btn-ghost { padding: 12px 20px; font-size: 9px; display: block; width: 100%; margin-left: 0; text-align: center; }
 
       /* Stats */
       .stats { flex-wrap: wrap; }
