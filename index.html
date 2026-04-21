@@ -453,9 +453,34 @@
         max-width: 90px;
       }
 
-      /* Nav */
-      nav { overflow-x: auto; justify-content: flex-start; }
-      nav a { padding: 11px 14px; font-size: 9px; letter-spacing: 1px; white-space: nowrap; }
+      /* Nav móvil - vertical con dropdowns estáticos */
+      nav {
+        overflow: visible;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        position: relative;
+      }
+      nav a { padding: 11px 14px; font-size: 12px; letter-spacing: 0.5px; white-space: nowrap; }
+
+      /* Dropdowns en móvil: posición fija debajo del nav */
+      .nav-dropdown { position: static; }
+      .dropdown-menu {
+        position: fixed;
+        top: auto;
+        left: 0; right: 0;
+        width: 100%;
+        border-radius: 0;
+        z-index: 9999;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      }
+      .registro-sub {
+        position: static !important;
+        width: 100%;
+        border-radius: 0 !important;
+        border-top: none !important;
+        border-left: 3px solid #ffffff;
+        box-shadow: none !important;
+      }
 
       /* Hero */
       .hero { padding: 28px 20px 36px; min-height: auto; }
