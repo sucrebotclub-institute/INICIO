@@ -171,7 +171,7 @@
   </header>
 
   <nav>
-    <a href="#inicio" class="active" id="navInicio">Inicio</a>
+    <a href="javascript:void(0)" class="active" id="navInicio" style="cursor:default;">Inicio</a>
     <a href="#institucion" id="navInstitucion">Institución</a>
     <div class="nav-dropdown" id="navEventos">
       <a href="javascript:void(0)" id="navEventosLink">Eventos</a>
@@ -272,7 +272,7 @@
   <div class="footer-links">
     <a href="#inicio">Inicio</a>
     <a href="#institucion">Institución</a>
-    <a href="#staff" id="staff">Staff</a>
+    <a href="javascript:void(0)" id="staff">Staff</a>
     <a href="#eventos" id="eventos">Eventos</a>
     <a href="#participantes" id="participantes">Participantes</a>
   </div>
@@ -411,6 +411,14 @@
       a.classList.add('active');
     });
   });
+
+  // ── DESACTIVAR INICIO (ya estamos aquí) ──
+  (function() {
+    const navInicio = document.getElementById('navInicio');
+    if (navInicio) {
+      navInicio.addEventListener('click', e => e.preventDefault());
+    }
+  })();
 </script>
 </body>
 </html>
