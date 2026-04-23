@@ -53,7 +53,6 @@
     .dropdown-menu a:hover svg { opacity: 1; }
     .registro-sub { display: none; position: absolute; top: -3px; left: 100%; min-width: 180px; background: #1e2030; border: 1px solid #2a2d3e; border-top: 3px solid #ffffff; border-radius: 0 8px 8px 8px; box-shadow: 4px 8px 24px rgba(0,0,0,0.3); z-index: 300; }
     .registro-sub.open { display: block; }
-    /* STAFF: oculto por defecto, JS controla display directamente */
     #navStaff { display: none; }
     .hero { position: relative; background: linear-gradient(135deg, #0c0e14 0%, #12141a 35%, #161820 65%, #0e1016 100%); min-height: 380px; display: flex; align-items: center; padding: 60px 40px; overflow: hidden; }
     .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(74,184,232,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(74,184,232,0.04) 1px, transparent 1px); background-size: 44px 44px; }
@@ -143,60 +142,70 @@
 <body>
 
 <div class="sticky-header">
-<div class="top-bar">
-  <div class="top-pulse"></div>
-  <a href="mailto:sucrebotclub@tecnologicosucre.edu.ec">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-    sucrebotclub@tecnologicosucre.edu.ec
-  </a>
-  <a href="https://tecnologicosucre.edu.ec/web/" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-    Instituto Sucre
-  </a>
-  <button class="btn-login" id="btnLogin" onclick="iniciarLogin()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-    Iniciar Sesión
-  </button>
-  <div class="user-info" id="userInfo">
-    <img class="user-avatar" id="userAvatar" src="" alt="avatar" />
-    <span class="user-name" id="userName"></span>
-    <button class="btn-logout" onclick="cerrarSesion()">✕ Salir</button>
+  <div class="top-bar">
+    <div class="top-pulse"></div>
+    <a href="mailto:sucrebotclub@tecnologicosucre.edu.ec">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+      sucrebotclub@tecnologicosucre.edu.ec
+    </a>
+    <a href="https://tecnologicosucre.edu.ec/web/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+      Instituto Sucre
+    </a>
+    <button class="btn-login" id="btnLogin" onclick="iniciarLogin()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Iniciar Sesión
+    </button>
+    <div class="user-info" id="userInfo">
+      <img class="user-avatar" id="userAvatar" src="" alt="avatar" />
+      <span class="user-name" id="userName"></span>
+      <button class="btn-logout" onclick="cerrarSesion()">✕ Salir</button>
+    </div>
   </div>
-</div>
 
-<header>
-  <div class="logo-wrap">
-    <img src="club-robotica-fondo-blanco.png" alt="Club de Robótica Sucre" style="height:72px;width:auto;object-fit:contain;" />
-  </div>
-  <img src="logosucre.png" alt="Instituto Superior Universitario Sucre" style="height:58px;width:auto;max-width:260px;object-fit:contain;" />
-</header>
+  <header>
+    <div class="logo-wrap">
+      <img src="club-robotica-fondo-blanco.png" alt="Club de Robótica Sucre" style="height:72px;width:auto;object-fit:contain;" />
+    </div>
+    <img src="logosucre.png" alt="Instituto Superior Universitario Sucre" style="height:58px;width:auto;max-width:260px;object-fit:contain;" />
+  </header>
 
-<nav>
-  <a href="#inicio" class="active">Inicio</a>
-  <a href="#institucion">Institución</a>
-  <div class="nav-dropdown" id="navEventos">
-    <a href="javascript:void(0)" id="navEventosLink">Eventos</a>
-    <div class="dropdown-menu" id="menuEventos">
-      <div id="wrapSucrebot" style="position:relative;">
-        <a id="btnSucrebot" href="javascript:void(0)" style="color:#ffffff;justify-content:space-between;">
-          <span style="display:flex;align-items:center;gap:10px;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
-            SucreBot 2026
-          </span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;flex-shrink:0;"><path d="M9 18l6-6-6-6"/></svg>
-        </a>
-        <div id="menuRegistro" class="registro-sub">
-          <a href="https://sucrebotclub-institute.github.io/REGISTRO/">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-            Registro
+  <nav>
+    <a href="#inicio" class="active" id="navInicio">Inicio</a>
+    <a href="#institucion" id="navInstitucion">Institución</a>
+    <div class="nav-dropdown" id="navEventos">
+      <a href="javascript:void(0)" id="navEventosLink">Eventos</a>
+      <div class="dropdown-menu" id="menuEventos">
+        <div id="wrapSucrebot" style="position:relative;">
+          <a id="btnSucrebot" href="javascript:void(0)" style="color:#ffffff;justify-content:space-between;">
+            <span style="display:flex;align-items:center;gap:10px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+              SucreBot 2026
+            </span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;flex-shrink:0;"><path d="M9 18l6-6-6-6"/></svg>
           </a>
+          <div id="menuRegistro" class="registro-sub">
+            <a href="https://sucrebotclub-institute.github.io/REGISTRO/">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              Registro
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <a href="https://sucrebotclub-institute.github.io/PARTICIPANTES_REGISTRADOS/">Participantes</a>
-  <a href="#staff" id="navStaff">Staff</a>
-</nav>
+    <a href="https://sucrebotclub-institute.github.io/PARTICIPANTES_REGISTRADOS/" id="navParticipantes">Participantes</a>
+
+    <!-- STAFF DROPDOWN — visible solo con sesión iniciada -->
+    <div class="nav-dropdown" id="navStaff" style="display:none;">
+      <a href="javascript:void(0)" id="navStaffLink">Staff</a>
+      <div class="dropdown-menu" id="menuStaff">
+        <a href="https://sucrebotclub-institute.github.io/ESCANER/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h.01M14 18h.01M18 14h.01M18 18h.01M18 21v-3M21 18h-3"/></svg>
+          Escáner QR
+        </a>
+      </div>
+    </div>
+  </nav>
 </div>
 
 <div id="g_id_onload"
@@ -299,7 +308,7 @@
     document.getElementById('userInfo').classList.add('visible');
     document.getElementById('userName').textContent = data.name || data.email;
     if (data.picture) document.getElementById('userAvatar').src = data.picture;
-    document.getElementById('navStaff').style.display = 'inline-flex';
+    document.getElementById('navStaff').style.display = 'flex';
   }
 
   function cerrarSesion() {
@@ -323,6 +332,7 @@
     if (saved) activarSesion(JSON.parse(saved));
   });
 
+  // ── DROPDOWN EVENTOS ──
   (function() {
     const navEventos   = document.getElementById('navEventos');
     const menuEventos  = document.getElementById('menuEventos');
@@ -365,7 +375,25 @@
     });
   })();
 
-  document.querySelectorAll('.nav-dropdown:not(#navEventos)').forEach(dropdown => {
+  // ── DROPDOWN STAFF ──
+  (function() {
+    const navStaff  = document.getElementById('navStaff');
+    const menuStaff = document.getElementById('menuStaff');
+    let tStaff;
+    navStaff.addEventListener('mouseenter',  () => { clearTimeout(tStaff); menuStaff.style.display = 'block'; });
+    navStaff.addEventListener('mouseleave',  () => { tStaff = setTimeout(() => menuStaff.style.display = '', 180); });
+    menuStaff.addEventListener('mouseenter', () => clearTimeout(tStaff));
+    menuStaff.addEventListener('mouseleave', () => { tStaff = setTimeout(() => menuStaff.style.display = '', 180); });
+    document.getElementById('navStaffLink').addEventListener('touchend', (e) => {
+      e.preventDefault();
+      const isOpen = menuStaff.style.display === 'block';
+      document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = '');
+      if (!isOpen) menuStaff.style.display = 'block';
+    });
+  })();
+
+  // ── TOUCH para otros dropdowns ──
+  document.querySelectorAll('.nav-dropdown:not(#navEventos):not(#navStaff)').forEach(dropdown => {
     const trigger = dropdown.querySelector(':scope > a');
     const menu = dropdown.querySelector('.dropdown-menu');
     if (!trigger || !menu) return;
