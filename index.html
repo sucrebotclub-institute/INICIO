@@ -197,10 +197,11 @@
     <!-- PARTICIPANTES: dropdown con sesión -->
     <div class="nav-dropdown" id="navPartDropdown" style="display:none;">
       <a href="javascript:void(0)" id="navParticipantesLink">Participantes</a>
-    <div class="dropdown-menu" id="menuParticipantes">
-      <a href="https://sucrebotclub-institute.github.io/MI-REGISTRO/">
-        <svg ...>...</svg>Mi Registro
-      </a>
+      <div class="dropdown-menu" id="menuParticipantes">
+        <a href="https://sucrebotclub-institute.github.io/MI-REGISTRO/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Mi Registro
+        </a>
+      </div>
     </div>
 
     <!-- STAFF -->
@@ -291,14 +292,14 @@
     } else {
       document.getElementById('navPartLink').style.display = 'none';
       document.getElementById('navPartDropdown').style.display = 'flex';
-}
+    }
+  }
 
   function cerrarSesion() {
     sessionStorage.removeItem('sucrebot_user');
     document.getElementById('btnLogin').style.display = 'flex';
     document.getElementById('userInfo').classList.remove('visible');
     document.getElementById('navStaff').style.display = 'none';
-    // Participantes: volver a enlace simple
     document.getElementById('navPartLink').style.display = 'block';
     document.getElementById('navPartDropdown').style.display = 'none';
     google.accounts.id.disableAutoSelect();
